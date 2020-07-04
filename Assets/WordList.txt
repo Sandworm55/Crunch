@@ -1,0 +1,50 @@
+Word,Class,Type,Reaction,Syllables
+Art,Verb,None,None,1
+Asshat,Noun,Body,Negative,2
+Celery,Noun,Food,Negative,3
+Clammy,Adjective,None,Negative,2
+Code,Verb,None,None,1
+Crust,Noun,Food,Negative,1
+Desperate,Adjective,None,None,3
+Disease,Noun,Body,Negative,2
+Diseased,Adjective,Body,Negative,2
+Drooling,Adjective,Body,Negative,2
+Ear Nugget,Noun,Body,Negative,3
+Enjoy,Verb,None,Positive,2
+Fetid,Adjective,None,Negative,2
+Fop,Noun,None,Negative,1
+Fungus,Noun,Food,Negative,1
+Gelantinous,Adjective,Food,Negative,4
+Gibbering,Adjective,Body,Negative,3
+Greased Up,Adjective,None,Negative,2
+Gross,Adjective,None,Negative,1
+Ham,Noun,Food,Negative,1
+Hammer Faced,Adjective,Machine,Negative,3
+Kangaroo,Noun,Animal,Negative,3
+Leaky,Adjective,None,Negative,2
+Lickspittle,Noun,None,Negative,3
+Ligament,Noun,Body,Negative,3
+Lingering,Adjective,None,Negative,3
+Lugnut,Noun,Machine,Negative,2
+Monkey,Noun,Animal,Negative,2
+Mushy,Adjective,None,Negative,2
+Noodle,Noun,Food,Negative,2
+Nostril Juice,Noun,Body,Negative,3
+Oozing,Adjective,None,Negative,2
+Pediculous,Adjective,Body,Negative,4
+Pillock,Noun,None,Negative,2
+Pulsating,Adjective,None,Negative,3
+Relax,Verb,None,Positive,2
+Rhino,Noun,Animal,Negative,2
+Rusty,Adjective,None,Negative,1
+Sausage,Noun,Food,Negative,2
+Shyster,Noun,None,Negative,2
+Simpleton,Noun,None,Negative,3
+Slithering,Adjective,None,Negative,3
+Snake,Noun,Animal,Negative,1
+Soggy,Adjective,None,Negative,2
+Sponge,Noun,Animal,Negative,1
+Sweaty,Adjective,Body,Negative,2
+Test,Verb,None,None,1
+Tortoise,Noun,Animal,Negative,2
+Weiner,Noun,Food,Negative,2
