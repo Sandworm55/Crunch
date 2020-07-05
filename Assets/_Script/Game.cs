@@ -57,6 +57,10 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+
+
         if(CurrentEmployee == null)
 		{
             NextEmployee();
