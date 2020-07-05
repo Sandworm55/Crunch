@@ -118,7 +118,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7633936682651976898}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1366203704528170777}
+        m_TargetAssemblyTypeName: WordColumn, Assembly-CSharp
+        m_MethodName: WordPick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2517094403172131939
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d12d63e0ee5e3498bd7f2048d168a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Words:
+  WordButtons:
   - {fileID: 3990905202287852290}
   - {fileID: 8446188076492965744}
   - {fileID: 1645114623643233640}
@@ -475,7 +487,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8173960463713358130}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1366203704528170777}
+        m_TargetAssemblyTypeName: WordColumn, Assembly-CSharp
+        m_MethodName: WordPick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7113089442736779305
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,4 +922,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6579779343433528860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1366203704528170777}
+        m_TargetAssemblyTypeName: WordColumn, Assembly-CSharp
+        m_MethodName: WordPick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

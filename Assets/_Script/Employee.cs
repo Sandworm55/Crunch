@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Employee : MonoBehaviour
 {
     public Job job;
-    public Mood mood;
+    public Mood mood = Mood.Neutral;
+    public Image JobIcon, Face;
 
+    public Sprite Art, Code, QA;
+    public Sprite Joyfull, Happy, Neutral, Stressed, Angry;
 
     // Start is called before the first frame update
     void Start()
@@ -14,21 +18,51 @@ public class Employee : MonoBehaviour
         
     }
 
-    public void BoostMood()
+    public void BoostMood(int amount)
 	{
-
+        mood = (Mood)((int)mood + amount);
 	}
 
-    public void DropMood()
+    public void DropMood(int amount)
 	{
-
-	}
+        mood = (Mood)((int)mood - amount);
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
-    }
+		switch (mood)
+		{
+			case Mood.Joyous:
+                Face.sprite = Joyfull;
+				break;
+			case Mood.Happy:
+                Face.sprite = Happy;
+                break;
+			case Mood.Neutral:
+                Face.sprite = Neutral;
+                break;
+			case Mood.Stressed:
+                Face.sprite = Stressed;
+                break;
+			case Mood.Angry:
+                Face.sprite = Angry;
+                break;
+		}
+
+		switch (job)
+		{
+			case Job.Code:
+                JobIcon.sprite = Code;
+				break;
+			case Job.Art:
+                JobIcon.sprite = Art;
+                break;
+			case Job.QA:
+                JobIcon.sprite = QA;
+                break;
+		}
+	}
 }
 
 public enum Job
@@ -39,9 +73,9 @@ public enum Job
 }
 public enum Mood
 {
-    Joyous,
-    Happy,
-    Neutral,
+    Angry,
     Stressed,
-    Angry
+    Neutral,
+    Happy,
+    Joyous
 }

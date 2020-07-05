@@ -8,7 +8,7 @@ public class EmployeeBar : MonoBehaviour
     public GameObject Bar;
     public Image Icon;
     public int StartValue = 100;
-    int CurrentValue;
+    public int CurrentValue;
     float StartingHeight;
     RectTransform rect;
 
@@ -16,15 +16,17 @@ public class EmployeeBar : MonoBehaviour
     void Start()
     {
         rect = (RectTransform)Bar.transform;
-        StartingHeight = rect.sizeDelta.x;
+        StartingHeight = rect.sizeDelta.y;
+        CurrentValue = StartValue;
     }
 
     public void DoWork(int work)
 	{
         CurrentValue -= work;
-        rect.sizeDelta = new Vector2( 
-            (CurrentValue / StartValue) * StartingHeight, 
-            rect.sizeDelta.y);
+        rect.sizeDelta = new Vector2(
+            rect.sizeDelta.x,
+            (float)((float)CurrentValue / (float)StartValue) * StartingHeight);
+        Debug.Log((float)((float)CurrentValue / (float)StartValue) + " * " + StartingHeight);
 	}
 
     // Update is called once per frame

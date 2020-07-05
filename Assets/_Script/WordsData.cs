@@ -84,7 +84,6 @@ public class WordsData : MonoBehaviour
 		ActualWord = parts[0];
 		Type = GetTags(parts[2]);
 		Negative = parts[3] == "Negative" ? true : false ;
-		Debug.Log(parts[4]);
 		int.TryParse(parts[4], out Syllables);
 	}
 

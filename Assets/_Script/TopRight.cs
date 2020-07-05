@@ -5,7 +5,7 @@ using TMPro;
 
 public class TopRight : MonoBehaviour
 {
-    public TextMeshProUGUI BudgetValue, TimeValue, TimeAMPM;
+    public TextMeshProUGUI BudgetValue, TimeValue, TimeAMPM, Days;
 
     // Start is called before the first frame update
     void Start()
