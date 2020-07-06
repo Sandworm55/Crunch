@@ -20,7 +20,18 @@ public class TopRight : MonoBehaviour
     void FixedUpdate()
     {
         BudgetValue.text = "$ " + Game.Budget;
-        TimeValue.text = (math.round( Game.CurrentTime)).ToString();
+
+        int time = (int)(Game.CurrentTime / 7) + 9;
+		if (time <= 12f)
+		{
+            TimeValue.text = time + ":00";
+            TimeAMPM.text = "AM";
+		}
+        else if (time > 12f)
+        {
+            TimeValue.text = (time - 12) + ":00";
+            TimeAMPM.text = "PM";
+        }
         Days.text = Game.DaysLeft.ToString();
     }
 

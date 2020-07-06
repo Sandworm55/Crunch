@@ -85,6 +85,7 @@ public class Word
 	public Word(string[] parts)
 	{
 		ActualWord = parts[0];
+
 		Type = GetTags(parts[2]);
 		switch (parts[3])
 		{

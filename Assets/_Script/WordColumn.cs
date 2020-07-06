@@ -10,6 +10,9 @@ public class WordColumn : MonoBehaviour
 	public List<Button> WordButtons;
 	public List<TextMeshProUGUI> WordsLabels;
 	public List<Word> Words;
+	public List<Image> Icons;
+	public Sprite Art, Code, Test;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -21,6 +24,29 @@ public class WordColumn : MonoBehaviour
 		for (int i = 0; i < words.Count; i++)
 		{
 			WordsLabels[i].text = words[i].ActualWord;
+		}
+
+		if (words[0].WordClass == WordClass.Verb)
+		{
+			for (int i = 0; i < words.Count; i++)
+			{
+				Icons[i].gameObject.SetActive(false);
+				switch (words[i].ActualWord)
+				{
+					case "Art":
+						Icons[i].sprite = Art;
+						Icons[i].gameObject.SetActive(true);
+						break;
+					case "Code":
+						Icons[i].sprite = Code;
+						Icons[i].gameObject.SetActive(true);
+						break;
+					case "Test":
+						Icons[i].sprite = Test;
+						Icons[i].gameObject.SetActive(true);
+						break;
+				}
+			}
 		}
 	}
 

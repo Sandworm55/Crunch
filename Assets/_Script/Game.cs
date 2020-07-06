@@ -10,9 +10,12 @@ public class Game : MonoBehaviour
 {
 	public static List<Employee> employeesEnd;
 	public static int BudgetEnd, CodeEnd, ArtEnd, TestEnd, BudgetStart, CodeStart, ArtStart, TestStart;
+	public Slider BGM;
 
+	public bool Paused = true;
 
 	public List<Employee> Employees;
+	public List<Employee> VacationEmployees;
 	Employee CurrentEmployee;
 	public GameObject EmployeePrefab, Que, Chair;
 
@@ -22,13 +25,14 @@ public class Game : MonoBehaviour
 	public Buttons Buttons;
 	public TopRight TopRight;
 	public MoodList MoodList;
+	public DayEnd DayEnd;
 
 	public int Budget;
 	public int StartingBudget = 1000;
 
 	public int StartingStaff = 10;
 
-	public int EmployeeWage;
+	public int EmployeeWage = 20, VacationBonus = 30;
 	public float SecondsPerDay = 60, CurrentTime;
 	public DateTime CurrentTimeClock = new DateTime(2020, 1, 1, 9, 0, 0);
 	DateTime EndOfDay = new DateTime(2020, 1, 1, 18, 0, 0);
@@ -40,6 +44,7 @@ public class Game : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		BGM.value = .2f;
 		int num = StartingStaff / 3;
 		for (int i = 0; i < num; i++)
 		{
@@ -78,53 +83,94 @@ public class Game : MonoBehaviour
 		CodeStart = TopLeft.Coder.CurrentValue;
 		ArtStart = TopLeft.Art.CurrentValue;
 		TestStart = TopLeft.QA.CurrentValue;
+
+		BudgetEnd = Budget;
+
+		CodeEnd = TopLeft.Coder.CurrentValue;
+		ArtEnd = TopLeft.Art.CurrentValue;
+		TestEnd = TopLeft.QA.CurrentValue;
+
+		employeesEnd = Employees;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-			Application.Quit();
+		BudgetEnd = Budget;
 
-		if ((CurrentTime += Time.deltaTime) >= SecondsPerDay)
+		CodeEnd = TopLeft.Coder.CurrentValue;
+		ArtEnd = TopLeft.Art.CurrentValue;
+		TestEnd = TopLeft.QA.CurrentValue;
+
+		employeesEnd = Employees;
+		if (Budget <= 0 || Employees.Count <= 0 || TopLeft.isDone())
+			SceneManager.LoadScene("End");
+		if (!Paused)
 		{
-			DaysLeft--;
-			if (DaysLeft <= 0)
+
+			if (Input.GetKeyDown(KeyCode.Escape))
+				Application.Quit();
+
+			if ((CurrentTime += Time.deltaTime) >= SecondsPerDay)
 			{
-				BudgetEnd = Budget;
-				
-				CodeEnd = TopLeft.Coder.CurrentValue;
-				ArtEnd = TopLeft.Art.CurrentValue;
-				TestEnd = TopLeft.QA.CurrentValue;
-
-				employeesEnd = Employees;
-				SceneManager.LoadScene("End");
+				DaysLeft--;
+				if (DaysLeft <= 0)
+				{
+					SceneManager.LoadScene("End");
+				}
+				AdvanceDay();
+				CurrentTime = 0f;
 			}
-			AdvanceDay();
-			CurrentTime = 0f;
-		}
 
-		if (CurrentEmployee == null)
+			if (CurrentEmployee == null)
+			{
+				NextEmployee();
+				FillWords();
+			}
+
+			if (_Sentence.Verb != null && _Sentence.Adjective != null && _Sentence.Noun != null)
+				JudgeThem();
+		}
+		else if (Paused && !DayEnd.screen.activeSelf && !MoodList.gameObject.activeSelf)
 		{
-			NextEmployee();
-			FillWords();
-
+			DayEnd.screen.SetActive(true);
 		}
-
-		if (_Sentence.Verb != null && _Sentence.Adjective != null && _Sentence.Noun != null)
-		{
-			JudgeThem();
-			ResetButtons();
-		}
-
-
 	}
 
 	void AdvanceDay()
 	{
-		Budget -= (Employees.Count * EmployeeWage);
-		Debug.Log(Budget);
+		int stressed = 0, vaca = 0;
+		foreach (var item in Employees)
+		{
+			if (item.mood == Mood.Stressed)
+				stressed++;
+			else if (item.Vacation)
+				vaca++;
+		}
+		Budget -= (((Employees.Count - stressed) * EmployeeWage) + vaca * VacationBonus);
+		DealWithEdges();
+		Paused = true;
 	}
+
+	private void DealWithEdges()
+	{
+		for (int i = 0; i < Employees.Count; i++)
+		{
+			if (Employees[i].Vacation)
+			{
+				Employee emp = Employees[i];
+				Employees.RemoveAt(i);
+				Employees.Add(emp);
+			}
+		}
+
+		foreach (var item in Employees)
+		{
+			if (item.Quit)
+				Destroy(item);
+		}
+	}
+
 	private void ResetButtons()
 	{
 		Buttons.Reset();
@@ -132,26 +178,37 @@ public class Game : MonoBehaviour
 
 	private void JudgeThem()
 	{
-		if (_Sentence.Verb.MoodChange == MoodChange.Positive)
-			CurrentEmployee.BoostMood();
-		else if (CurrentEmployee.job != _Sentence.Verb.Job)
-			CurrentEmployee.ChangeJob(_Sentence.Verb.Job);
-		else
-			CurrentEmployee.DropMood();
+		if (CurrentEmployee.fresh)
+		{
+			CurrentEmployee.fresh = false;
+			if (_Sentence.Verb.MoodChange == MoodChange.Positive)
+				CurrentEmployee.BoostMood();
+			else if (CurrentEmployee.job != _Sentence.Verb.Job)
+				CurrentEmployee.ChangeJob(_Sentence.Verb.Job);
+			else
+				CurrentEmployee.DropMood();
 
-		MakeThemWork();
+			MakeThemWork();
+		}
 
-		Employees.RemoveAt(0);
-		Employees.Add(CurrentEmployee);
-		CurrentEmployee.transform.parent = Que.transform;
-		CurrentEmployee.transform.localPosition = Vector3.zero;
-		CurrentEmployee = null;
-		_Sentence = new Sentance();
+		if (CurrentEmployee.Done)
+		{
+			ResetButtons();
+
+			Employees.RemoveAt(0);
+			Employees.Add(CurrentEmployee);
+			CurrentEmployee.transform.parent = Que.transform;
+			CurrentEmployee.transform.localPosition = Vector3.zero;
+			CurrentEmployee = null;
+			_Sentence = new Sentance();
+		}
 
 	}
 
 	private void MakeThemWork()
 	{
+		CurrentEmployee.StartReaction = true;
+		CurrentEmployee.ChangeMood();
 		int workDone = 0;
 
 		switch (CurrentEmployee.mood)
@@ -159,15 +216,17 @@ public class Game : MonoBehaviour
 			case Mood.Angry:
 				workDone = 0;
 				break;
+			case Mood.Stressed:
+				workDone = 3;
+				break;
 			case Mood.Neutral:
 				workDone = 1;
 				break;
-			case Mood.Stressed:
 			case Mood.Happy:
 				workDone = 2;
 				break;
 			case Mood.Joyous:
-				workDone = 3;
+				workDone = 4;
 				break;
 		}
 
@@ -183,6 +242,7 @@ public class Game : MonoBehaviour
 				TopLeft.QA.DoWork(workDone);
 				break;
 		}
+
 	}
 
 	private void FillWords()
@@ -196,6 +256,10 @@ public class Game : MonoBehaviour
 		CurrentEmployee.transform.parent = Chair.transform;
 		CurrentEmployee.transform.localPosition = Vector3.zero;
 		MoodList.SetBars(Employees);
+
+		CurrentEmployee.fresh = true;
+		CurrentEmployee.Done = false;
+		DealWithEdges();
 	}
 }
 
