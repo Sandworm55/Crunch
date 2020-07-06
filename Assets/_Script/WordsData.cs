@@ -27,12 +27,15 @@ public class WordsData : MonoBehaviour
 			{
 				case "Verb":
 					Verb.Add(word);
+					word.WordClass = WordClass.Verb;
 					break;
 				case "Adjective":
 					Adjective.Add(word);
+					word.WordClass = WordClass.Adjective;
 					break;
 				case "Noun":
 					Noun.Add(word);
+					word.WordClass = WordClass.Noun;
 					break;
 			}
 		}
@@ -61,7 +64,7 @@ public class WordsData : MonoBehaviour
 			int num;
 			do
 			{
-				num = Random.Range(0, words.Count - 1);
+				num = Random.Range(0, words.Count);
 
 			} while (ids.Contains(num));
 			ids.Add(num);
@@ -76,20 +79,47 @@ public class WordsData : MonoBehaviour
 
 	}
 }
-	public class Word
+[System.Serializable]
+public class Word
 {
 	public Word(string[] parts)
 	{
 		ActualWord = parts[0];
 		Type = GetTags(parts[2]);
-		Negative = parts[3] == "Negative" ? true : false ;
+		switch (parts[3])
+		{
+			case "Negative":
+				MoodChange = MoodChange.Negative;
+				break;
+			case "Positive":
+				MoodChange = MoodChange.Positive;
+				break;
+			case "None":
+				MoodChange = MoodChange.None;
+				break;
+		}
+
 		int.TryParse(parts[4], out Syllables);
+		switch (parts[0])
+		{
+			case "Code":
+				Job = Job.Code;
+				break;
+			case "Art":
+				Job = Job.Art;
+				break;
+			case "Test":
+				Job = Job.QA;
+				break;
+		}
 	}
 
 	public string ActualWord;
-	public bool Negative;
+	public MoodChange MoodChange;
 	public int Syllables;
 	public List<Tags> Type;
+	public WordClass WordClass;
+	public Job Job;
 
 	List<Tags> GetTags(string tag)
 	{
@@ -127,4 +157,11 @@ public enum Tags
 	Noun,
 	Verb,
 	Adjective
+}
+
+public enum MoodChange
+{
+	Negative,
+	None,
+	Positive
 }

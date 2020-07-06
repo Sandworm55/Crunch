@@ -13,7 +13,7 @@ public class EmployeeBar : MonoBehaviour
     RectTransform rect;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rect = (RectTransform)Bar.transform;
         StartingHeight = rect.sizeDelta.y;
@@ -22,11 +22,13 @@ public class EmployeeBar : MonoBehaviour
 
     public void DoWork(int work)
 	{
-        CurrentValue -= work;
+        if((CurrentValue -= work) <= 0)
+		{
+            CurrentValue = 0;
+		}
         rect.sizeDelta = new Vector2(
             rect.sizeDelta.x,
             (float)((float)CurrentValue / (float)StartValue) * StartingHeight);
-        Debug.Log((float)((float)CurrentValue / (float)StartValue) + " * " + StartingHeight);
 	}
 
     // Update is called once per frame

@@ -1,0 +1,96 @@
+filler line
+Art,Verb,None,None,1
+Amateur,Noun,None,Negative,3
+Asshat,Noun,Body,Negative,2
+Badger,Noun,Animal,Negative,2
+Bagel Hole,Noun,Food,Negative,3
+Barking,Adjective,Animal,Negative,2
+Bleating,Adjective,Animal,Negative,2
+Blundering,Adjective,None,Negative,3
+Blowhard,Noun,None,Negative,2
+Celery,Noun,Food,Negative,3
+Cheese Monger,Noun,Food,Negative,3
+Clammy,Adjective,None,Negative,2
+Coddled,Adjective,None,Negative,2
+Code,Verb,None,None,1
+Crust,Noun,Food,Negative,1
+Depraved,Adjective,None,Negative,2
+Desperate,Adjective,None,None,3
+Disease,Noun,Body,Negative,2
+Diseased,Adjective,Body,Negative,2
+Donkey,Noun,Animal,Negative,2
+Drooling,Adjective,Body,Negative,2
+Ear Nugget,Noun,Body,Negative,3
+Eel Licker,Noun,Animal,Negative,4
+Enjoy,Verb,None,Positive,2
+Fetid,Adjective,None,Negative,2
+Fish Fondler,Noun,Animal,Negative,4
+Flatulent,Adjective,Body,Negative,3
+Fop,Noun,None,Negative,1
+Frumpy,Adjective,None,Negative,2
+Fungus,Noun,Food,Negative,1
+Gaggle Hump,Noun,None,Negative,3
+Gelantinous,Adjective,Food,Negative,4
+Gibbering,Adjective,Body,Negative,3
+Greased Up,Adjective,None,Negative,2
+Groaning,Adjective,None,Negative,2
+Gross,Adjective,None,Negative,1
+Guppie,Noun,Animal,Negative,2
+Hairball,Noun,None,Negative,2
+Ham,Noun,Food,Negative,1
+Hammer Faced,Adjective,Machine,Negative,3
+Heaving,Adjective,None,Negative,2
+Infested,Adjective,None,Negative,3
+Ink Sniffer,Noun,None,Negative,3
+Insipid,Adjective,None,Negative,3
+Kangaroo,Noun,Animal,Negative,3
+Lame,Adjective,None,Negative,1
+Leaky,Adjective,None,Negative,2
+Lickspittle,Noun,None,Negative,3
+Ligament,Noun,Body,Negative,3
+Lingering,Adjective,None,Negative,3
+Lugnut,Noun,Machine,Negative,2
+Moist,Adjective,None,Negative,1
+Monkey,Noun,Animal,Negative,2
+Mushy,Adjective,None,Negative,2
+Nincompoop,Noun,None,Negative,3
+Noodle,Noun,Food,Negative,2
+Nostril Juice,Noun,Body,Negative,3
+Oozing,Adjective,None,Negative,2
+Pediculous,Adjective,Body,Negative,4
+Pillock,Noun,None,Negative,2
+Ponderous,Adjective,None,Negative,3
+Pulsating,Adjective,None,Negative,3
+Putrid,Adjective,None,Negative,2
+Relax,Verb,None,Positive,2
+Rhino,Noun,Animal,Negative,2
+Ridiculous,Adjective,None,Negative,4
+Rusty,Adjective,None,Negative,1
+Sausage,Noun,Food,Negative,2
+Sewage Slurper,Noun,None,Negative,4
+Shyster,Noun,None,Negative,2
+Simpering,Adjective,None,Negative,3
+Simpleton,Noun,None,Negative,3
+Slithering,Adjective,None,Negative,3
+Snake,Noun,Animal,Negative,1
+Snorting,Adjective,None,Negative,2
+Soggy,Adjective,None,Negative,2
+Spit Valve,Noun,None,Negative,2
+Sponge,Noun,Animal,Negative,1
+Stinky,Adjective,None,Negative,2
+Sweaty,Adjective,Body,Negative,2
+Tattle-Tale,Noun,None,Negative,4
+Test,Verb,None,None,1
+Undulating,Adjective,None,Negative,4
+Urinal Cake,Noun,None,Negative,4
+Tortoise,Noun,Animal,Negative,2
+Turgid,Adjective,None,Negative,2
+Turnip,Noun,Food,Negative,2
+Vacuous,Adjective,None,Negative,3
+Weiner,Noun,Food,Negative,2
+Wart,Noun,Body,Negative,1
+Whinging,Adjective,None,Negative,2
+Wind Bag,Noun,None,Negative,2
+Wobbling,Adjective,None,Negative,2
+Yabo,Noun,None,Negative,2
+Yipping,Adjective,None,Negative,2
